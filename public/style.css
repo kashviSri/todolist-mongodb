@@ -1,0 +1,253 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Bricolage Grotesque", sans-serif;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-image: linear-gradient(90deg,black, rgb(54, 54, 54));
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.box {
+  background: #dedddd;
+  padding: 25px;
+  margin: 15px 0;
+  border-radius: 15px;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+  width: 90%;
+  max-width: 700px;
+}
+
+form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 2px solid #2a2929;
+}
+
+select {
+  width: 99px;          
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  border: 2px solid #2a2929;
+}
+
+
+.submit-button {
+  padding: 10px 16px;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 50%;
+  background-color: #313030;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+  box-shadow: 5px 3px 5px rgb(159, 159, 159);
+}
+.submit-button:hover {
+  background-color: #000000;
+}
+.edit-button {
+  padding: 5px 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background 0.3s;
+  border: none;
+}
+#edit-icon:hover{
+   color: white;
+   background-color: rgb(28, 28, 28);
+   padding: 7px;
+    border-radius: 50%;
+}
+
+.delete-button {
+  padding: 5px 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background 0.3s;
+  border: none;
+}
+
+#delete-icon:hover{
+   color: white;
+   background-color: rgb(28, 28, 28);
+   padding: 7px;
+    border-radius: 50%;
+}
+
+.save-button {
+  padding: 5px 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background 0.3s;
+  border: none;
+  margin-left: 90px;
+}
+#save-icon:hover {
+  background-color: rgb(28, 28, 28);
+  border-radius: 50%;
+  padding: 10px;
+    color: white;
+}
+.inline-form button {
+  background: transparent;
+  border: none;
+  font-size: 1.0rem;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.item-right form {
+  width: 32px;
+  height: 32px;
+}
+.item form {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.item input[type="text"] {
+  padding: 5px 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.priority {
+  font-size: 0.85rem;
+  color: #444;
+  width: 60px;            
+  text-align: center;     
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.alert {
+  color: #ff3333;
+  margin-top: 10px;
+  display: none;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  color: white;
+  padding: 20px;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  button {
+    border-radius: 10px;
+    width: 100%;
+  }
+}
+.task-text {
+  font-size: 1rem;
+  color: #000000;
+  flex: 1;
+  cursor: pointer;
+}
+
+.task-text.done {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.inline-form {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+.priority-filter{
+  width: 70px;          
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  border: 2px solid #282828;
+  margin-top: -7px;
+  margin-bottom: 10px;
+}
+.edit-button{
+  color: black;
+}
+#list-icon{
+    font-size: 3.3rem;
+    margin-top: 20px;
+}

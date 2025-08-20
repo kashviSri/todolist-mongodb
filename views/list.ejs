@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Todo List</title>
+  <link rel="stylesheet" href="/style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body>
+
+  <header>
+    <h1><span class="material-symbols-outlined" id="list-icon">list_alt_check</span> Todo List</h1>
+  </header>
+
+  <main>
+    
+    <div class="box">
+      <form action="/" method="POST" onsubmit="return validateForm()">
+        <input type="text" name="task" id="taskInput" placeholder="Add a new task">
+        <select name="priority">
+          <option value="Low">Low</option>
+          <option value="Normal" selected>Normal</option>
+          <option value="High">High</option>
+        </select>
+        <button type="submit" class="submit-button">+</button>
+      </form>
+      <div id="alert" class="alert">Task cannot be empty!</div>
+      <% if (error) { %>
+        <div class="alert"><%= error %></div>
+      <% } %>
+    </div>
+
+    <!-- Priority Filter Form -->
+    <div class="box">
+      <form method="GET" action="/">
+        <label>Filter by priority:</label>
+        <select class="priority-filter" name="priority" onchange="this.form.submit()">
+          <% const priorities = ["", "Low", "Normal", "High"]; %>
+          <% priorities.forEach(function(p) { %>
+            <option value="<%= p %>" <%= selectedPriority === p ? 'selected' : '' %>>
+              <%= p === "" ? "All" : p %>
+            </option>
+          <% }); %>
+        </select>
+      </form>
+
+      <!-- Todo Items -->
+      <% todos.forEach((todo, i) => { %>
+        <div class="item">
+
+          <!-- Checkbox -->
+          <form action="/toggle" method="POST" class="inline-form">
+            <input type="hidden" name="index" value="<%= i %>">
+
+            <input type="checkbox" id="check-<%= i %>" onchange="this.form.submit()" <%= todo.done ? 'checked' : '' %>>
+          </form>
+
+          <!-- Task text OR input box for editing -->
+          <% if (typeof editingIndex !== 'undefined' && editingIndex != null && editingIndex == i) { %>
+            <form action="/edit" method="POST" class="inline-form">
+              <input type="hidden" name="index" value="<%= i %>">
+              <input type="text" name="updatedTask" value="<%= todo.task %>" required>
+              <button type="submit" title="Save" class="save-button"><span id="save-icon" class="material-symbols-outlined">save</span>
+              </button>
+            </form>
+          <% } else { %>
+            <label for="check-<%= i %>" class="task-text <%= todo.done ? 'done' : '' %>"><%= todo.task %></label>
+
+            <!-- Edit button -->
+            <form action="/edit-mode" method="POST" class="inline-form">
+              <input type="hidden" name="index" value="<%= i %>">
+              <input type="hidden" name="filter" value="<%= typeof selectedPriority !== 'undefined' ? selectedPriority : '' %>">
+              <button type="submit" title="Edit" class="edit-button"><span class="material-symbols-outlined" id="edit-icon">edit</span>
+              </button>
+            </form>
+          <% } %>
+
+          <!-- Delete button -->
+          <form action="/delete" method="POST" class="inline-form">
+            <input type="hidden" name="index" value="<%= i %>">
+            <button title="Delete" class="delete-button"><span class="material-symbols-outlined" id="delete-icon">delete_forever</span>
+            </button>
+          </form>
+
+          <!-- Priority Label -->
+          <span class="priority">[<%= todo.priority %>]</span>
+        </div>
+      <% }); %>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Todo List App.</p>
+  </footer>
+
+  <script>
+    function validateForm() {
+      const input = document.getElementById("taskInput");
+      const alert = document.getElementById("alert");
+      if (input.value.trim() === "") {
+        alert.style.display = "block";
+        input.focus();
+        return false;
+      }
+      alert.style.display = "none";
+      return true;
+    }
+  </script>
+
+</body>
+</html>

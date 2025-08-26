@@ -6,20 +6,14 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const mongoose = require('mongoose');
-const mongoURI = process.env.MONGO_URI;
+const mongoose = require("mongoose");
 
-mongoose.connect(mongoURI, {
+mongoose.connect("mongodb+srv://myUser:-tRYpyCUqDJ7cE4@cluster0.abcde.mongodb.net/myDatabase", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-.then(() => {
-    console.log('MongoDB connected successfully.');
-})
-.catch(err => {
-    console.error('MongoDB connection error:', err);
-    process.exit(1);
-});
+.then(() => console.log("MongoDB Connected"))
+.catch(err => console.log(err));
 
 const todoSchema = new mongoose.Schema({
   task: String,

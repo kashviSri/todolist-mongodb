@@ -8,12 +8,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://myUser:-tRYpyCUqDJ7cE4@cluster0.abcde.mongodb.net/todoDB", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-.then(() => console.log("MongoDB Connected"))
-.catch(err => console.log(err));
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.error(err));
 
 const todoSchema = new mongoose.Schema({
   task: String,

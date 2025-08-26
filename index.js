@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb+srv://myUser:-tRYpyCUqDJ7cE4@cluster0.abcde.mongodb.net/myDatabase", {
+mongoose.connect("mongodb+srv://myUser:-tRYpyCUqDJ7cE4@cluster0.abcde.mongodb.net/todoDB", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
